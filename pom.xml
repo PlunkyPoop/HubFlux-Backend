@@ -14,7 +14,7 @@
 	<name>HubFlux</name>
 	<description>A hub for streaming services</description>
 	<properties>
-		<java.version>11.0.17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,7 +59,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-
 			</plugin>
 		</plugins>
 	</build>
