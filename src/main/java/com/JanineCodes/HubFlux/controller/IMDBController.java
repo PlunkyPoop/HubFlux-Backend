@@ -3,6 +3,7 @@ package com.JanineCodes.HubFlux.controller;
 import com.JanineCodes.HubFlux.model.IMDB;
 import com.JanineCodes.HubFlux.service.IMDBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,14 @@ public class IMDBController {
     public ResponseEntity<?> getEverything()
     {
         try {
-        return new ResponseEntity(imdbService.FindEverything(), HttpStatus.OK);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Access-Control-Allow-Origin", "*");
+
+
+        return ResponseEntity.ok().headers(headers).body(imdbService.FindEverything());
+
+
+//            imdbService.FindEverything(), HttpStatus.OK);
 
         }
         catch (ExpectedException exception){
