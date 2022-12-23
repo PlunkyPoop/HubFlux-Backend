@@ -11,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
 public class IMDBService {
 
 
-    public IMDB FindEverything()
+    public IMDB FindEverything(String key)
     {
-        String uri = "https://imdb-api.com/en/API/Title/k_36n11qz4/tt9253284";
+        String uri = "https://imdb-api.com/en/API/Title/k_36n11qz4/" + key;
         RestTemplate restTemplate = new RestTemplate();
         IMDB result = restTemplate.getForObject(uri, IMDB.class);
         return result;
