@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StreamServiceRepository extends JpaRepository<StreamService,Integer> {
+public interface StreamServiceRepository extends JpaRepository<StreamService,Long> {
 
+
+    StreamService findStreamServiceByName(String name);
 }

@@ -25,7 +25,6 @@ public class IMDBController {
     {
         try {
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Access-Control-Allow-Origin", "*");
         return ResponseEntity.ok().headers(headers).body(imdbService.FindEverything(key));
         }
         catch (ExpectedException exception){

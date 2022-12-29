@@ -17,8 +17,6 @@ public class StreamService {
     @Column(name = "ImageLocation")
     private String imageLocation;
 
-    public StreamService() {
-    }
 
     public Long getId() {
         return Id;
@@ -49,4 +47,6 @@ public class StreamService {
     public String getImageLocation() {
         return imageLocation;
     }
+
+
 }
