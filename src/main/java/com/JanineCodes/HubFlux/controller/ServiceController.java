@@ -78,4 +78,38 @@ public class ServiceController {
         return new ResponseEntity("It worked!", HttpStatus.OK);
 
     }
+
+    @PostMapping("/post/streamservice")
+    public ResponseEntity<StreamService> NewStreamingService(@RequestBody StreamService newStreamService) {
+        try{
+            StreamService newStreamServiceData = new StreamService();
+
+            newStreamServiceData.setName(newStreamService.getName());
+            newStreamServiceData.setImdbMovie(newStreamService.getImdbMovie());
+            newStreamServiceData.setImageLocation(newStreamService.getImageLocation());
+            streamServiceRepository.save(newStreamService);
+
+        } catch (InvalidConfigurationPropertyValueException e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity("It worked!", HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/delete/streamservice/{streamId}")
+    public ResponseEntity<StreamService> DeleteStreamService(@PathVariable Long streamId) {
+
+        StreamService toDelete = streamServiceRepository.findById(streamId)
+                .orElseThrow(() -> new InvalidConfigurationPropertyValueException("id: ", streamId, "Cannot find anything with this id"));
+
+        try
+        {
+            streamServiceRepository.delete(toDelete);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return new ResponseEntity("Record is deleted!", HttpStatus.OK);
+
+    }
 }
