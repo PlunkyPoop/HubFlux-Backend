@@ -17,8 +17,12 @@ public class IMDBController {
     static class ExpectedException extends RuntimeException {
     }
 
-    @Autowired
     private IMDBService imdbService;
+
+    @Autowired
+    public void setImdbService(IMDBService imdbService){
+        this.imdbService = imdbService;
+    }
 
     @GetMapping("/imdbData/{key}")
     public ResponseEntity<Object> getEverything(@PathVariable String key)

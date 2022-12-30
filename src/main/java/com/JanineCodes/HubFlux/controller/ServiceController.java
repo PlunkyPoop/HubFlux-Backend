@@ -9,18 +9,27 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 @RequestMapping("/")
 public class ServiceController {
-    @Autowired
+
     private StreamServiceService plexService;
+
     @Autowired
+    public void setPlexService(StreamServiceService streamServiceRepository){
+        this.plexService = streamServiceRepository;
+    }
+
     private StreamServiceRepository streamServiceRepository;
+    @Autowired
+    public void setStreamServiceRepository(StreamServiceRepository streamServiceRepository){
+        this.streamServiceRepository = streamServiceRepository;
+    }
+
+
 
     @PostMapping("/add")
     public String add(@RequestBody StreamService streamService)
@@ -44,7 +53,7 @@ public class ServiceController {
         }
         catch (IMDBController.ExpectedException exception){
             exception.printStackTrace();
-            return new ResponseEntity("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -57,12 +66,12 @@ public class ServiceController {
         }
         catch (IMDBController.ExpectedException exception){
             exception.printStackTrace();
-            return new ResponseEntity("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/put/streamservice/{streamId}")
-    public ResponseEntity<StreamService> GetSpecificStreamService(@RequestBody StreamService editedStreamService, @PathVariable Long streamId) {
+    public ResponseEntity GetSpecificStreamService(@RequestBody StreamService editedStreamService, @PathVariable Long streamId) {
     try{
         StreamService updatedSteamService = streamServiceRepository.findById(streamId)
                 .orElseThrow(() -> new InvalidConfigurationPropertyValueException("id: ", streamId, "Cannot find anything with this id"));
@@ -75,7 +84,7 @@ public class ServiceController {
         throw new RuntimeException(e);
     }
 
-        return new ResponseEntity("It worked!", HttpStatus.OK);
+        return new ResponseEntity<>("It worked!", HttpStatus.OK);
 
     }
 

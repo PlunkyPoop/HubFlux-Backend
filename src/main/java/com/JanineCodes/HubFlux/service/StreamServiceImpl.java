@@ -10,12 +10,17 @@ import java.util.List;
 @Service
 public class StreamServiceImpl implements StreamServiceService {
 
-    @Autowired
     private StreamServiceRepository streamServiceRepository;
 
+    @Autowired
+    public void setStreamServiceRepository(StreamServiceRepository streamServiceRepository){
+        this.streamServiceRepository = streamServiceRepository;
+    }
+
+
     @Override
-    public StreamService savePlex(StreamService plex) {
-        return streamServiceRepository.save(plex);
+    public void savePlex(StreamService plex) {
+        streamServiceRepository.save(plex);
     }
 
     @Override
@@ -23,10 +28,7 @@ public class StreamServiceImpl implements StreamServiceService {
         return streamServiceRepository.findAll();
     }
 
-    @Override
-    public List<StreamService> getStreamServiceData() {
-        return streamServiceRepository.findAll();
-    }
+
 
 
 
