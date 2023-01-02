@@ -32,7 +32,6 @@ public class IMDBController {
             return ResponseEntity.ok().headers(headers).body(imdbService.FindEverything(key));
         }
         catch (ExpectedException exception){
-            exception.printStackTrace();
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
