@@ -11,7 +11,7 @@ public class IMDBService {
 
     public IMDB FindEverything(String key)
     {
-        String uri = "https://imdb-api.com/en/API/Title/k_09ihshh8/" + key;
+        String uri = "https://imdb-api.com/en/API/Title/k_9uxeg72r/" + key;
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(uri, IMDB.class);
     }

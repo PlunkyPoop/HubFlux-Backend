@@ -29,8 +29,6 @@ public class ServiceController {
         this.streamServiceRepository = streamServiceRepository;
     }
 
-
-
     @PostMapping("/add")
     public String add(@RequestBody StreamService streamService)
     {
@@ -71,25 +69,25 @@ public class ServiceController {
     }
 
     @PutMapping("/put/streamservice/{streamId}")
-    public ResponseEntity GetSpecificStreamService(@RequestBody StreamService editedStreamService, @PathVariable Long streamId) {
-    try{
-        StreamService updatedSteamService = streamServiceRepository.findById(streamId)
-                .orElseThrow(() -> new InvalidConfigurationPropertyValueException("id: ", streamId, "Cannot find anything with this id"));
-        updatedSteamService.setName(editedStreamService.getName());
-        updatedSteamService.setImdbMovie(editedStreamService.getImdbMovie());
-        updatedSteamService.setImageLocation(editedStreamService.getImageLocation());
-        streamServiceRepository.save(updatedSteamService);
+    public ResponseEntity<Object> GetSpecificStreamService(@RequestBody StreamService editedStreamService, @PathVariable Long streamId) {
+        try{
+            StreamService updatedSteamService = streamServiceRepository.findById(streamId)
+                    .orElseThrow(() -> new InvalidConfigurationPropertyValueException("id: ", streamId, "Cannot find anything with this id"));
+            updatedSteamService.setName(editedStreamService.getName());
+            updatedSteamService.setImdbMovie(editedStreamService.getImdbMovie());
+            updatedSteamService.setImageLocation(editedStreamService.getImageLocation());
+            streamServiceRepository.save(updatedSteamService);
 
-    } catch (InvalidConfigurationPropertyValueException e) {
-        throw new RuntimeException(e);
-    }
+        } catch (InvalidConfigurationPropertyValueException e) {
+            throw new RuntimeException(e);
+        }
 
         return new ResponseEntity<>("It worked!", HttpStatus.OK);
 
     }
 
     @PostMapping("/post/streamservice")
-    public ResponseEntity<StreamService> NewStreamingService(@RequestBody StreamService newStreamService) {
+    public ResponseEntity<Object> NewStreamingService(@RequestBody StreamService newStreamService) {
         try{
             StreamService newStreamServiceData = new StreamService();
 
@@ -102,12 +100,12 @@ public class ServiceController {
             throw new RuntimeException(e);
         }
 
-        return new ResponseEntity("It worked!", HttpStatus.OK);
+        return new ResponseEntity<>("It worked!", HttpStatus.OK);
 
     }
 
     @DeleteMapping("/delete/streamservice/{streamId}")
-    public ResponseEntity<StreamService> DeleteStreamService(@PathVariable Long streamId) {
+    public ResponseEntity<Object> DeleteStreamService(@PathVariable Long streamId) {
 
         StreamService toDelete = streamServiceRepository.findById(streamId)
                 .orElseThrow(() -> new InvalidConfigurationPropertyValueException("id: ", streamId, "Cannot find anything with this id"));
@@ -118,7 +116,7 @@ public class ServiceController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return new ResponseEntity("Record is deleted!", HttpStatus.OK);
+        return new ResponseEntity<>("Record is deleted!", HttpStatus.OK);
 
     }
 }

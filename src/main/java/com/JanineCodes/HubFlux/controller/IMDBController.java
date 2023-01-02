@@ -29,11 +29,11 @@ public class IMDBController {
     {
         try {
             HttpHeaders headers = new HttpHeaders();
-        return ResponseEntity.ok().headers(headers).body(imdbService.FindEverything(key));
+            return ResponseEntity.ok().headers(headers).body(imdbService.FindEverything(key));
         }
         catch (ExpectedException exception){
             exception.printStackTrace();
-            return new ResponseEntity("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
 
