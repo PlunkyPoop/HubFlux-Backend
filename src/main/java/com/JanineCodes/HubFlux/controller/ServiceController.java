@@ -63,7 +63,6 @@ public class ServiceController {
             return ResponseEntity.ok().headers(headers).body(streamServiceRepository.findStreamServiceByName(name));
         }
         catch (IMDBController.ExpectedException exception){
-            exception.printStackTrace();
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
