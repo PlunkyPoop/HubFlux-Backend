@@ -2,7 +2,7 @@ FROM openjdk:17-jdk-alpine
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
-EXPOSE 8090
+EXPOSE 80
 
 #FROM node:10-alpine
 #WORKDIR /usr/src/app
