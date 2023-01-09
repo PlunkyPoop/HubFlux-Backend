@@ -32,7 +32,7 @@ jobs:
         repository: plunku/hubflux
         tags: latest
         environment:
-          SPRING_DATASOURCE_USERNAME= ${{ secrets.SPRINGBOOT_USERNAME }}
-          SPRING_DATASOURCE_PASSWORD= ${{ secrets.SPRINGBOOT_PASSWORD }}
+          spring.datasource.username= ${{ secrets.SPRINGBOOT_USERNAME }}
+          spring.datasource.password= ${{ secrets.SPRINGBOOT_PASSWORD }}
 
 
