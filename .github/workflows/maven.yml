@@ -31,5 +31,8 @@ jobs:
         password:  ${{ secrets.DOCKER_HUB_PASSWORD }}
         repository: plunku/hubflux
         tags: latest
+        environment:
+          SPRING_DATASOURCE_USERNAME= ${{ secrets.SPRINGBOOT_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD= ${{ secrets.SPRINGBOOT_PASSWORD }}
 
 
